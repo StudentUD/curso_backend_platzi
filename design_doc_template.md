@@ -88,6 +88,11 @@ poner diagramas de secuencia, uml, etc
 ### Modelo de datos
 Poner diseño de entidades, Jsons, tablas, diagramas entidad relación, etc..
 
+
+
+Luego es importante contruir un modelo a bajo nivel 
+para contruir las entidades modelo de datos, con ello tambien podras entrar en detalle que base de datos utilizar de acuerdo a la necesidad, si requiere bd transaccioanles, o orientadas a documentos, nube, zonas de disponibiidad, etc
+
 ---
 ## Limitaciones
 Lista de limitaciones conocidas. Puede ser en formato de lista.
