@@ -65,6 +65,23 @@ Descripción...
 
 representación visual y teórica de cómo interactúan los diferentes elementos del sistema
 
+siempre preguntar el porque , para hacer una revisión del diseño 
+
+Plasmar un borrador  
+¿ que servicios vamos a tener? ¿ Que comunicaciones deeben tener? 
+
+
+Tomar un par de casos de usos principales
+y hacer algunas preguntas 
+
+¿cuantos usuarios? 
+¿cuantos editores ? 
+¿Cuales son los tiempos de respuesta para escritura (r) y para lectura (w)? 
+
+a partir de lo anterior sabemos si debemos crear un servicios separados uno para escritura y otro para escritura, si se va a usar sistemas de cache
+
+Te van a permitir definir mejor el sistema, si necesitar crear mejores soluciónes
+
 ### Diagramas
 poner diagramas de secuencia, uml, etc
 
