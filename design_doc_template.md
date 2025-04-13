@@ -93,6 +93,8 @@ Poner diseño de entidades, Jsons, tablas, diagramas entidad relación, etc..
 Luego es importante contruir un modelo a bajo nivel 
 para contruir las entidades modelo de datos, con ello tambien podras entrar en detalle que base de datos utilizar de acuerdo a la necesidad, si requiere bd transaccioanles, o orientadas a documentos, nube, zonas de disponibiidad, etc
 
+Tambien vamos a plasmar el flujo de datos, tipos de datos (Si un servio de escriura entonces se lee y se almacena en dynamoDB )
+
 ---
 ## Limitaciones
 Lista de limitaciones conocidas. Puede ser en formato de lista.
@@ -115,7 +117,76 @@ Ejemplo:
 
 
 
+## Plan de pruebas 
+
+Crear los flujos  tanto de desarrollo, pruebas y desarrollo 
+* se toma como base los casos de uso (o en este caso historia de usuario)
+- Ej: Registrar usuario, crrar review , simular que visitante pueda leer review escrito  (Prueba end to end)
+
+Tambien detallar los  ambientes 
+
+La suit de pruebas se recomendaria hacer por tags (versiones de codigo)
+
+## Integraciones 
+ 
+* uso de git o manjeadro de versiones 
+* guia de manejar ramas y saber si usan metodlogias gitflow , oneflow 
+* Si se van a automatizar los despliegues 
+* Pipelines de despliegue 
+* Planificar  hacer un roll out (despligue total) o release a cierta region  (primero america,luego europa, etc..)
+
+
+## Code complete 
+
+Ver CodeStream
+Para hacer revision de codigo x
+
 ------
+
+## Escabilidad Throttling y RetryPolices 
+
+¿Qué es la escalabilidad de servicios?
+La escalabilidad es un concepto fundamental en el desarrollo de sistemas que necesitan manejar un gran volumen de tráfico. En contextos como Amazon o Microsoft, un servicio puede ser utilizado globalmente, generando millones de solicitudes diarias. La escalabilidad permite a estos sistemas manejar el incremento en las peticiones sin decrimento en el rendimiento del servicio.
+
+¿Cómo gestionar el tráfico alto?
+Cuando un sistema recibe un gran volumen de solicitudes, es crucial implementar políticas que ayuden en la gestión y control de dicho tráfico. Dos técnicas comunes para lograr esto son el throttling y el retry policy.
+
+Throttling
+
+Limita el número de solicitudes que un servicio puede procesar en un determinado lapso de tiempo.
+Ejemplo: Un servicio que solo procesa 500 solicitudes por segundo, rechazando las demás.
+Esto evita la sobrecarga de servidores y asegura que el servicio siga operando de manera eficiente.
+Retry Policy
+
+Similar a lanzar una red de seguridad cuando las solicitudes iniciales fallan.
+Al implementar un retry, se vuelve a intentar procesar las solicitudes fallidas.
+Sin embargo, es importante determinar cuántas veces se debe reintentar, para evitar sobrecargar el sistema con solicitudes fallidas recurrentes.
+¿Cuál es el papel del Exponential Backoff?
+El Exponential Backoff es un enfoque para gestionar los retries de manera eficiente. Cuando una solicitud falla, en lugar de reintentar inmediatamente, el sistema espera un lapso de tiempo que aumenta exponencialmente con cada intento fallido.
+
+¿Cómo funciona el Exponential Backoff?
+Si en un segundo el sistema acepta solo una solicitud, cualquier otra solicitud durante el mismo segundo fallará.
+
+En un escenario regular, podrías tener:
+
+Segundo 1: 1 éxito, 1 falla.
+Segundo 2: 1 solicitud nueva y 1 fallo + 1 falla de segundo 1.
+Y así sucesivamente.
+Con el Exponential Backoff, el tiempo de espera para el siguiente retry aumenta:
+
+Inicialmente puede reintentar en 20 segundos, luego 40 segundos, etc.
+Este enfoque ayuda a nivelar la carga y evitar la saturación del sistema.
+
+¿Cómo implementar Throttling y Retry Policies?
+Para implementar estas políticas, es recomendable investigar técnicas y herramientas que provean servicios de nube como AWS o Azure. El uso de su infraestructura y políticas abreviará el proceso de configuración y asegurará que el throughput del sistema mantenga los niveles esperados sin interrupciones.
+
+Consejos adicionales:
+Investiga recursos públicos para profundizar en temas de políticas de retry y Exponential Backoff.
+Implementa estas prácticas tanto en el backend como en el cliente, asegurando que quien use la API no cause problemas de carga innecesaria.
+Es crucial asegurar que la implementación en el frontend aproveche correctamente estas políticas para evitar penalizaciones y mejorar la experiencia del usuario.
+Esta guía te ayudará no solo a entender estos conceptos, sino a aplicarlos en proyectos reales, como los que enfrentan las grandes empresas tecnológicas diarias. ¡Ánimo y sigue adelante en tu aprendizaje! 
+
+
 
 
 Un ejemplo clave
